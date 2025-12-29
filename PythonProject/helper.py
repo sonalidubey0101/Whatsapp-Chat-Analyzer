@@ -63,9 +63,19 @@ def create_wordcloud(selected_user,df):
 #most commonly used words
 def most_common_words(selected_user,df):
 
-    f = open('stop_hinglish.txt','r')
-    stop_words = f.read()
+    #f = open('stop_hinglish.txt','r')
+    #stop_words = f.read()
+    
+    
+    from pathlib import Path
+    BASE_DIR = Path(__file__).parent
+    stop_words_path = BASE_DIR / "stop_hinglish.txt"
 
+    with open(stop_words_path, "r", encoding="utf-8") as f:
+        stop_words = f.read()
+
+    
+    
     if selected_user != 'Overall':
         df = df[df['user'] == selected_user]
 
@@ -137,5 +147,6 @@ def activity_heatmap(selected_user,df):
         df = df[df['user'] == selected_user]
 
     user_heatmap = df.pivot_table(index='day_name', columns='period', values='message', aggfunc='count').fillna(0)
+
 
     return user_heatmap
