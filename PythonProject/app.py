@@ -87,8 +87,13 @@ Analyze WhatsApp chats with interactive insights
 <hr>
 """, unsafe_allow_html=True)
 
-with open("whatsapp_logo.jpg", "rb") as f:
-   st.sidebar.image("whatsapp_logo.jpg")
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).parent
+logo_path = BASE_DIR / "whatsapp_logo.jpg"
+
+st.sidebar.image(logo_path)
 st.sidebar.title("See More Than Just Messages")
 
 #st.sidebar.markdown("## 📊 Controls")
@@ -227,4 +232,5 @@ st.markdown("""
 <p style="text-align:center; color:#6E7681;">
 From Messages to Meaning
 </p>
+
 """, unsafe_allow_html=True)
