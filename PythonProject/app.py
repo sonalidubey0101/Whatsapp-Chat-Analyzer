@@ -172,11 +172,23 @@ if uploaded_file is not None:
             plt.xticks(rotation='vertical')
             st.pyplot(fig)
 
+
         st.header("Weekly Activity Map")
         user_heatmap = helper.activity_heatmap(selected_user, df)
-        fig, ax = plt.subplots()
-        ax = sns.heatmap(user_heatmap)
-        st.pyplot(fig)
+
+        if user_heatmap is None:
+            st.warning("Not enough data to generate Weekly Activity Map for this chat.")
+        else:
+            fig, ax = plt.subplots()
+            sns.heatmap(user_heatmap, ax=ax)
+            st.pyplot(fig)
+        
+        
+        #st.header("Weekly Activity Map")
+        #user_heatmap = helper.activity_heatmap(selected_user, df)
+        #fig, ax = plt.subplots()
+        #ax = sns.heatmap(user_heatmap)
+        #st.pyplot(fig)
 
 
         # finding the busiest users in the group(Group level)
@@ -234,3 +246,4 @@ From Messages to Meaning
 </p>
 
 """, unsafe_allow_html=True)
+
