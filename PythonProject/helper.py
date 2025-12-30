@@ -155,7 +155,7 @@ def activity_heatmap(selected_user, df):
     if selected_user != 'Overall':
         df = df[df['user'] == selected_user]
 
-    # 🔴 NEW: handle empty dataframe
+    #  NEW: handle empty dataframe
     if df.empty:
         return None
 
@@ -169,9 +169,10 @@ def activity_heatmap(selected_user, df):
         .fillna(0)
     )
 
-    # 🔴 NEW: handle all-zero heatmap
+    # NEW: handle all-zero heatmap
     if user_heatmap.sum().sum() == 0:
         return None
 
     return user_heatmap
+
 
